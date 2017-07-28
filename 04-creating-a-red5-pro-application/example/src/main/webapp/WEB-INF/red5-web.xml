@@ -23,10 +23,11 @@
     <!-- Replace this class value with your handler. -->
     <bean id="web.handler" class="com.red5pro.example.ExampleApplication" />
     
-    <!-- <bean id="streams" class="com.infrared5.red5pro.examples.service.LiveStreamListService" >
+    <!-- 
+    <bean id="streams" class="com.infrared5.red5pro.examples.service.LiveStreamListService" >
         <constructor-arg ref="web.handler"/>
-    </bean> -->
-	
+    </bean>
+	 -->
 
     <!-- Enable this if you're using S3 storage -->
     <!--

@@ -15,37 +15,38 @@
       <scope>test</scope>
     </dependency>
     
-    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
-	<dependency>
-	    <groupId>org.apache.tomcat</groupId>
-	    <artifactId>tomcat-servlet-api</artifactId>
-	    <version>8.5.11</version>
-	    <scope>provided</scope>
-	</dependency> 
-	
-	<dependency>
-          <groupId>org.red5</groupId>
-          <artifactId>red5-parent</artifactId>
-          <version>1.0.9-M10</version>
-          <type>pom</type>
-      </dependency>
-	
-	<!-- https://mvnrepository.com/artifact/org.red5/red5-server -->
-	<dependency>
-	    <groupId>org.red5</groupId>
-	    <artifactId>red5-server</artifactId>
-	    <version>1.0.9-M10</version>
-	    <type>jar</type>
-	    <scope>provided</scope>
-	    
-	    <!-- either exclude the mina-core or include the bundle plugin below -->
-	    <exclusions>
-             <exclusion>
-                 <groupId>org.apache.mina</groupId>
-                 <artifactId>mina-core</artifactId>
-             </exclusion>
-         </exclusions>
-	</dependency> 
+     <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
+       <dependency>
+           <groupId>org.apache.tomcat</groupId>
+           <artifactId>tomcat-servlet-api</artifactId>
+           <version>8.5.11</version>
+           <scope>provided</scope>
+       </dependency>
+
+       <dependency>
+           <groupId>org.red5</groupId>
+           <artifactId>red5-parent</artifactId>
+           <version>1.0.9-M10</version>
+           <type>pom</type>
+       </dependency>
+
+       <!-- https://mvnrepository.com/artifact/org.red5/red5-server -->
+       <dependency>
+           <groupId>org.red5</groupId>
+           <artifactId>red5-server</artifactId>
+           <version>1.0.9-M10</version>
+           <type>jar</type>
+           <scope>provided</scope>
+
+           <!-- either exclude the mina-core or include the bundle plugin below -->
+           <exclusions>
+                 <exclusion>
+                     <groupId>org.apache.mina</groupId>
+                     <artifactId>mina-core</artifactId>
+                 </exclusion>
+             </exclusions>
+       </dependency>
+    
     
   </dependencies>
   <build>
@@ -53,7 +54,7 @@
   </build>
   
   <properties>
-  	<maven.compiler.target>1.8</maven.compiler.target>
-  	<maven.compiler.source>1.8</maven.compiler.source>
-  </properties>
+     <maven.compiler.target>1.8</maven.compiler.target>
+     <maven.compiler.source>1.8</maven.compiler.source>
+   </properties>
 </project>

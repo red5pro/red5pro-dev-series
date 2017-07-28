@@ -2,6 +2,7 @@ package com.red5pro.example;
 
 import org.red5.server.adapter.MultiThreadedApplicationAdapter;
 import org.red5.server.api.IConnection;
+import org.red5.server.api.scope.IScope;
 
 public class ExampleApplication extends MultiThreadedApplicationAdapter {
 
@@ -15,6 +16,12 @@ public class ExampleApplication extends MultiThreadedApplicationAdapter {
 	public void appDisconnect(IConnection conn) {
 		log.info("appDisconnect");
 		super.appDisconnect(conn);
+	}
+
+	@Override
+	public boolean appStart(IScope app) {
+		log.info("appStart");
+		return super.appStart(app);
 	}
 
 }

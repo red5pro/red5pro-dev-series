@@ -1,0 +1,52 @@
+<html>
+    <head>
+    </head>
+<body>
+   <div id="video-container">
+     <video id="red5pro-subscriber"></video>
+   </div>
+ </body>
+ 
+ <!-- WebRTC Shim -->
+ <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+ <!-- Exposes `red5prosdk` on the window global. -->
+ <script src="lib/red5pro/red5pro-sdk.min.js"></script>
+
+  <script>
+// Create a new instance of the WebRTC subcriber.
+   var subscriber = new red5prosdk.RTCSubscriber();
+
+   // Create a view instance based on video element id.
+   var viewer = new red5prosdk.PlaybackView('red5pro-subscriber');
+   // Attach the subscriber to the view.
+   viewer.attachSubscriber(subscriber);
+
+//    var protocol = window.location.protocol;
+//    var isSecure = protocol.charAt(protocol.length - 2);
+
+   // Using Chrome/Google TURN/STUN servers.
+   var iceServers = [{urls: 'stun:stun2.l.google.com:19302'}];
+
+   // Initialize
+   subscriber.init({
+       protocol: 'ws',
+       host: 'localhost',
+       port: 8081,
+       app: 'example',
+       streamName: 'mystream',
+       iceServers: iceServers,
+       subscriptionId: 'subscriber-' + Math.floor(Math.random() * 0x10000).toString(16),
+       rtcpMuxPolicy: 'negotiate'
+     })
+     .then(function() {
+       // Invoke the playback action
+       return subscriber.play();
+     })
+     .catch(function(error) {
+       // A fault occurred while trying to initialize and subscribe to the stream.
+       console.error(error);
+     });
+
+ </script>
+
+ </html>

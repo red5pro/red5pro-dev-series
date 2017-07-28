@@ -1,0 +1,67 @@
+<html>
+    <head>
+    </head>
+<body>
+   <div id="video-container">
+     <video id="red5pro-publisher"></video>
+   </div>
+ </body>
+ 
+ <!-- WebRTC Shim -->
+ <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+ <!-- Exposes `red5prosdk` on the window global. -->
+ <script src="lib/red5pro/red5pro-sdk.min.js"></script>
+
+  <script>
+
+   // Create a new instance of the WebRTC publisher.
+   var publisher = new red5prosdk.RTCPublisher();
+
+   // Create a view instance based on video element id.
+   var view = new red5prosdk.PublisherView('red5pro-publisher');
+   view.attachPublisher(publisher);
+
+   // Access user media.
+   navigator.getUserMedia({
+     audio: true,
+     video: true
+   }, function(media) {
+
+     // Upon access of user media,
+     // 1. Attach the stream to the publisher.
+     // 2. Show the stream as preview in view instance.
+     publisher.attachStream(media);
+     view.preview(media, true);
+
+   }, function(error) {
+     console.error(error);
+   });
+
+//     var protocol = window.location.protocol;
+//    var isSecure = protocol.charAt(protocol.length - 2);
+
+   // Using Chrome/Google TURN/STUN servers.
+   var iceServers = [{urls: 'stun:stun2.l.google.com:19302'}];
+
+   // Initialize
+   publisher.init({
+       protocol: 'ws',
+       host: 'localhost',
+       port: 8081,
+       app: 'example',
+       streamName: 'mystream',
+       iceServers: iceServers,
+       tcpMuxPolicy: 'negotiate'
+     })
+     .then(function() {
+       // Invoke the publish action
+       return publisher.publish();
+     })
+     .catch(function(error) {
+       // A fault occurred while trying to initialize and publish the stream.
+       console.error(error);
+     });
+
+ </script>
+
+ </html>
