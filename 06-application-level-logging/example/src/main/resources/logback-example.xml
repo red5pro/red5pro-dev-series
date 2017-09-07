@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds">
+
+	<contextName>example</contextName>
+	
+	<jmxConfigurator contextName="example" />
+    
+    <appender name="EXAMPLE_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>log/example.log</File>
+        <Append>true</Append>
+        <Encoding>UTF-8</Encoding>
+        <BufferedIO>false</BufferedIO>
+        <ImmediateFlush>true</ImmediateFlush>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <FileNamePattern>example.%i.log</FileNamePattern>
+            <MinIndex>1</MinIndex>
+            <MaxIndex>10</MaxIndex>
+        </rollingPolicy>
+        
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>5MB</MaxFileSize>
+        </triggeringPolicy>
+        
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+	
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%p] [%thread] %logger - %msg%n</pattern>
+		</encoder>		
+	</appender>
+	
+	<root>
+		<level value="DEBUG" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="EXAMPLE_APPENDER" />
+	</root>
+	
+	<logger name="com.red5pro.example" level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="EXAMPLE_APPENDER" />
+	</logger>
+	
+</configuration>

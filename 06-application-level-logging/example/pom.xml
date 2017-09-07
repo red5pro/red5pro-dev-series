@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.red5pro</groupId>
+  <artifactId>example</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>example Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+     <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
+       <dependency>
+           <groupId>org.apache.tomcat</groupId>
+           <artifactId>tomcat-servlet-api</artifactId>
+           <version>8.5.11</version>
+           <scope>provided</scope>
+       </dependency>
+       
+
+
+       <dependency>
+           <groupId>org.red5</groupId>
+           <artifactId>red5-parent</artifactId>
+           <version>1.0.9-M10</version>
+           <type>pom</type>
+       </dependency>
+
+       <dependency>
+            <groupId>com.red5pro</groupId>
+            <artifactId>red5pro-mega</artifactId>
+            <version>1.1.4133</version> 
+            <scope>provided</scope>
+        </dependency>  
+        
+       <!-- https://mvnrepository.com/artifact/org.red5/red5-server -->
+       <dependency>
+           <groupId>org.red5</groupId>
+           <artifactId>red5-server</artifactId>
+           <version>1.0.9-M10</version>
+           <type>jar</type>
+           <scope>provided</scope>
+
+           <!-- either exclude the mina-core or include the bundle plugin below -->
+           <exclusions>
+                 <exclusion>
+                     <groupId>org.apache.mina</groupId>
+                     <artifactId>mina-core</artifactId>
+                 </exclusion>
+             </exclusions>
+       </dependency>
+    
+    
+  </dependencies>
+  <build>
+    <finalName>example</finalName>
+  </build>
+  
+  <properties>
+     <maven.compiler.target>1.8</maven.compiler.target>
+     <maven.compiler.source>1.8</maven.compiler.source>
+   </properties>
+</project>
