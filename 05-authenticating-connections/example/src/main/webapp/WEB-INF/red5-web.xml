@@ -22,7 +22,8 @@
     
     <!-- Replace this class value with your handler. -->
     <bean id="web.handler" class="com.red5pro.example.ExampleApplication" />
-	    <bean id="authDataValidator" class="com.red5pro.server.plugin.simpleauth.datasource.impl.Red5ProFileAuthenticationValidator" init-method="initialize">
+	    
+	<bean id="authDataValidator" class="com.red5pro.server.plugin.simpleauth.datasource.impl.Red5ProFileAuthenticationValidator" init-method="initialize">
 	    <property name="context" ref="web.context" />
 	    <property name="dataSource" value="/WEB-INF/simple-auth-plugin.credentials" />
 	</bean>
