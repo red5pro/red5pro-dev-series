@@ -32,6 +32,9 @@ public class ExampleApplication extends MultiThreadedApplicationAdapter {
 	public boolean appStart(IScope app) {
 		log.info("appStart");
 		
+        WebSocketScopeManager manager = ((WebSocketPlugin) PluginRegistry.getPlugin(WebSocketPlugin.NAME)).getManager(scope);
+        manager.setApplication(app);
+        
 		ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
 
 		Runnable task = () -> log.debug("Scheduling: " + System.nanoTime());
@@ -42,5 +45,16 @@ public class ExampleApplication extends MultiThreadedApplicationAdapter {
 		
 		return super.appStart(app);
 	}
+    
+    @Override
+    public void appStop(IScope scope) {
+        log.info("appStop");
+        
+        WebSocketScopeManager manager = ((WebSocketPlugin) PluginRegistry.getPlugin(WebSocketPlugin.NAME)).getManager(scope);
+        manager.stop();
+
+        super.appStop(scope);
+    }
+
 
 }
